@@ -9,7 +9,7 @@ pwdFullPath::pwdFullPath(FileSystemStructure* currentFileSystem)
 
 bool pwdFullPath::Execute(std::string input)
 {
-    // TODO: By input take some actions
+    this -> message = this -> fileSystem -> GetWorkingNode() -> nodePath;
     return true;
 }
 
