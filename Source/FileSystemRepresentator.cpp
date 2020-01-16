@@ -13,5 +13,5 @@ void FileSystemRepresentator::PrintTree(FileSystemNode* currentNode)
     {
         PrintTree(child);
     }
-    std::cout << currentNode -> data -> GetFileName() << std::endl;
+    std::cout << currentNode -> nodePath << std::endl;
 }
