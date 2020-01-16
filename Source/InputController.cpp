@@ -32,17 +32,17 @@ bool InputController::SetFileSystem(FileSystemStructure* newFileSystem)
 
 std::string InputController::LogicOverInput(const std::string& userInput)
 {
+    std::string allWithoutCommand = userInput;
     if (userInput.find("pwd") != std::string::npos)
     {
-        std::string allWithoutCommand = userInput;
         allWithoutCommand = allWithoutCommand.replace(userInput.find("pwd"), 3, "");
         this -> currentExecutableCommand = new pwdFullPath(fileSystem);
-        currentExecutableCommand -> Execute(allWithoutCommand);
-        return  currentExecutableCommand -> GetMessage();
+
     }
     if (userInput.find("cd") != std::string::npos)
     {
-
+        allWithoutCommand = allWithoutCommand.replace(userInput.find("cd"), 2, "");
+        this -> currentExecutableCommand = new cdChangeDirectory(fileSystem);
     }
     if (userInput.find("ls") != std::string::npos)
     {
@@ -76,6 +76,8 @@ std::string InputController::LogicOverInput(const std::string& userInput)
     {
 
     }
+    currentExecutableCommand -> Execute(allWithoutCommand);
+    return currentExecutableCommand -> GetMessage();
 }
 
 

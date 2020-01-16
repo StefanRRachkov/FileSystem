@@ -6,5 +6,6 @@
 #define FILESYSTEM_COMMANDTYPES_H
 
 #include "pwdFullPath.h"
+#include "cdChangeDirectory.h"
 
 #endif //FILESYSTEM_COMMANDTYPES_H
