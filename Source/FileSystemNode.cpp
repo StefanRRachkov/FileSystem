@@ -3,6 +3,7 @@
 
 FileSystemNode::FileSystemNode(const FileSystemNode& node)
 {
+    //TODO: NodePath
     this -> data = node.data;
     this -> nodePath = node.nodePath;
     this -> parent = node.parent;
@@ -31,10 +32,11 @@ FileSystemNode::~FileSystemNode()
 bool FileSystemNode::AddChild(const std::string& filePath)
 {
     // TODO: FilePath
+    std::string path = filePath;
     auto newFile = new File(filePath);
     auto newNode = new FileSystemNode();
     newNode -> data = newFile;
-    newNode -> nodePath = this -> nodePath + '/' + filePath;
+    newNode -> nodePath = this -> nodePath + '/' + path.erase(0, 3);
     newNode -> parent = this;
     this -> children.emplace_back(newNode);
     return newNode != nullptr;

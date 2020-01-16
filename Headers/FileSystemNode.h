@@ -12,10 +12,10 @@ struct FileSystemNode
     FileSystemNode(const FileSystemNode&);
     FileSystemNode& operator=(const FileSystemNode&);
     /// Fields:
-    File* data;
-    std::string nodePath;
-    FileSystemNode* parent;
-    std::vector<FileSystemNode*> children;
+        File* data;
+        std::string nodePath;
+        FileSystemNode* parent;
+        std::vector<FileSystemNode*> children;
     ///  Utility Methods to Work With DS:
     bool AddChild(const std::string&);
     bool RemoveChild(const std::string&);
