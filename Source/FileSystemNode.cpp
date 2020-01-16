@@ -34,6 +34,7 @@ bool FileSystemNode::AddChild(const std::string& filePath)
     auto newFile = new File(filePath);
     auto newNode = new FileSystemNode();
     newNode -> data = newFile;
+    newNode -> nodePath = this -> nodePath + '/' + filePath;
     newNode -> parent = this;
     this -> children.emplace_back(newNode);
     return newNode != nullptr;
