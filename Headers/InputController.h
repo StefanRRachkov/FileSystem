@@ -1,0 +1,12 @@
+
+#ifndef FILESYSTEM_INPUTCONTROLLER_H
+#define FILESYSTEM_INPUTCONTROLLER_H
+
+
+class InputController
+{
+
+};
+
+
+#endif //FILESYSTEM_INPUTCONTROLLER_H
