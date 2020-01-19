@@ -2,7 +2,7 @@
 
 int main()
 {
-    auto file = new File("../test.txt");
+    auto file = new TxtFile("../test.txt");
     auto root = new FileSystemNode;
     root -> data = file;
     root -> parent = nullptr;

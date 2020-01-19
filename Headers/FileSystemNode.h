@@ -4,7 +4,7 @@
 
 #include <vector>
 #include <iostream>
-#include "File.h"
+#include "Files/TxtFile.h"
 
 struct FileSystemNode
 {
@@ -12,7 +12,7 @@ struct FileSystemNode
     FileSystemNode(const FileSystemNode&);
     FileSystemNode& operator=(const FileSystemNode&);
     /// Fields:
-        File* data;
+        TxtFile* data;
         std::string nodePath;
         FileSystemNode* parent;
         std::vector<FileSystemNode*> children;

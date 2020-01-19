@@ -33,7 +33,7 @@ bool FileSystemNode::AddChild(const std::string& filePath)
 {
     // TODO: FilePath
     std::string path = filePath;
-    auto newFile = new File(filePath);
+    auto newFile = new TxtFile(filePath);
     auto newNode = new FileSystemNode();
     newNode -> data = newFile;
     newNode -> nodePath = this -> nodePath + '/' + path.erase(0, 3);
