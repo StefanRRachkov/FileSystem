@@ -1,16 +1,10 @@
 #include "Headers/FileSystemRepresentator.h"
+#include "Headers/Files/TxtFile.h"
 
 int main()
 {
-    auto file = new TxtFile("../test.txt");
-    auto root = new FileSystemNode;
-    root -> data = file;
-    root -> parent = nullptr;
-    root->AddChild("../test2.txt");
-
-    auto treeStructure = new FileSystemStructure(root);
-    FileSystemRepresentator test;
-    test.PrintTree(treeStructure -> GetRoot());
-
+    TxtFile a;
+    a.Create("../Testing/test.txt");
+    std::cout << a.GetFileName() << " -> " << a.GetContent() << std::endl;
     return 0;
 }

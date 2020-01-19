@@ -1,10 +1,22 @@
 
 #include "../Headers/FileSystemNode.h"
 
+FileSystemNode::FileSystemNode( File* data,
+                                const FileType& fType,
+                                const std::string& filePath,
+                                FileSystemNode* parent)
+{
+    this -> data = data;
+    this -> fileType = fType;
+    this -> nodePath = filePath;
+    this -> parent = parent;
+}
+
+
 FileSystemNode::FileSystemNode(const FileSystemNode& node)
 {
-    //TODO: NodePath
     this -> data = node.data;
+    this -> fileType = node.fileType;
     this -> nodePath = node.nodePath;
     this -> parent = node.parent;
     this -> children = node.children;
@@ -13,6 +25,7 @@ FileSystemNode::FileSystemNode(const FileSystemNode& node)
 FileSystemNode& FileSystemNode::operator=(const FileSystemNode& node)
 {
     this -> data = node.data;
+    this -> fileType = node.fileType;
     this -> nodePath = node.nodePath;
     this -> parent = node.parent;
     this -> children = node.children;
@@ -29,17 +42,18 @@ FileSystemNode::~FileSystemNode()
     }
 }
 
-bool FileSystemNode::AddChild(const std::string& filePath)
+bool FileSystemNode::AddChild(const std::string& filePath, const FileType& fType)
 {
-    // TODO: FilePath
-    std::string path = filePath;
-    auto newFile = new TxtFile(filePath);
-    auto newNode = new FileSystemNode();
-    newNode -> data = newFile;
-    newNode -> nodePath = this -> nodePath + '/' + path.erase(0, 3);
-    newNode -> parent = this;
-    this -> children.emplace_back(newNode);
-    return newNode != nullptr;
+    auto childData = new TxtFile;
+    childData -> Create(filePath);
+    auto child = new FileSystemNode(
+            childData,
+            fType,
+            this -> nodePath + filePath,
+            this
+    );
+    this -> children.emplace_back(child);
+    return true;
 }
 
 bool FileSystemNode::RemoveChild(const std::string& filePath)

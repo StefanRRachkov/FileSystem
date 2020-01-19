@@ -28,6 +28,7 @@ InputController& InputController::operator=(const InputController& otherControll
 bool InputController::SetFileSystem(FileSystemStructure* newFileSystem)
 {
     this -> fileSystem = newFileSystem;
+    return true;
 }
 
 std::string InputController::LogicOverInput(const std::string& userInput)

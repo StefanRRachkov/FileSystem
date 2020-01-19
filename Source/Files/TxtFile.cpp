@@ -1,10 +1,24 @@
 #include "../../Headers/Files/TxtFile.h"
 
+// TODO: Branch Predictor Optimise
+
 TxtFile::TxtFile(const std::string& filePath)
 {
     this -> fileName = filePath;
-    file.open(filePath);
-    std::cout << "LogFILE: TxtFile::TxtFile(const std::string& filePath) this -> file.is_open() == " << this -> file.is_open() << std::endl;
+    std::string buffer;
+    if(!this -> file.is_open())
+    {
+        this -> file.open(this -> fileName);
+        while(this -> file.eof())
+        {
+            std::getline(this -> file, buffer);
+            this -> fileContent += buffer + '\n';
+        }
+    }
+    else
+    {
+        std::cout << "LogError: TxtFile::TxtFile(const std::string& filePath) -> !this -> file.is_open() -> this -> file.is_open() == true" << std::endl;
+    }
 }
 
 TxtFile::TxtFile(const TxtFile& other)
@@ -14,6 +28,7 @@ TxtFile::TxtFile(const TxtFile& other)
     if(!this -> file.is_open())
     {
         this -> file.open(this -> fileName);
+        this -> fileContent = other.fileContent;
     }
     else
     {
@@ -28,6 +43,7 @@ TxtFile& TxtFile::operator=(const TxtFile& other)
     if(!this -> file.is_open())
     {
         this -> file.open(this -> fileName);
+        this -> fileContent = other.fileContent;
         return *this;
     }
     else
@@ -51,10 +67,16 @@ std::string TxtFile::GetFileName()
 bool TxtFile::Create(const std::string& filePath)
 {
     this -> fileName = filePath;
+    std::string buffer;
     if(file.is_open()) file.close();
     if(!this -> file.is_open())
     {
         this -> file.open(this -> fileName);
+        while(!this -> file.eof())
+        {
+            std::getline(this -> file, buffer);
+            this -> fileContent += buffer + '\n';
+        }
         return file.is_open();
     }
     else

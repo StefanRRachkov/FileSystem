@@ -35,7 +35,7 @@ FileSystemStructure::~FileSystemStructure()
 
 bool FileSystemStructure::AddNode(const std::string& filePath)
 {
-    return this -> workingNode -> AddChild(filePath);
+    //TODO: return this -> workingNode -> AddChild(filePath);
 }
 
 bool FileSystemStructure::Remove(const std::string& filePath)

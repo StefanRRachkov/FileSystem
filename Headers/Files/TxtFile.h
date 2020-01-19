@@ -7,7 +7,7 @@
 #include <fstream>
 #include <iostream>
 
-class TxtFile : File
+class TxtFile : public File
 {
 private:
     std::string fileName;

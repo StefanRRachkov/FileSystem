@@ -4,20 +4,26 @@
 
 #include <vector>
 #include <iostream>
-#include "Files/TxtFile.h"
+#include "Files/FileTypes.h"
+
+enum FileType {TXT, DIR};
 
 struct FileSystemNode
 {
     inline FileSystemNode() = default;
+    FileSystemNode(File*, const FileType&, const std::string&, FileSystemNode*);
     FileSystemNode(const FileSystemNode&);
     FileSystemNode& operator=(const FileSystemNode&);
+
     /// Fields:
-        TxtFile* data;
+        File* data;
+        FileType fileType;
         std::string nodePath;
         FileSystemNode* parent;
         std::vector<FileSystemNode*> children;
+
     ///  Utility Methods to Work With DS:
-    bool AddChild(const std::string&);
+    bool AddChild(const std::string&, const FileType&);
     bool RemoveChild(const std::string&);
 
     ~FileSystemNode();

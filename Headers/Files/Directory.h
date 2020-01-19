@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <io.h>
 
-class Directory : File
+class Directory : public File
 {
 private:
     std::string dirName;

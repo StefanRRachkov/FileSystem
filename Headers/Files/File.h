@@ -18,6 +18,8 @@ public:
     virtual std::string GetContent() = 0;
     virtual bool Create(const std::string&) = 0;
     virtual bool Delete(const std::string&) = 0;
+
+    inline ~File() = default;
 };
 
 
