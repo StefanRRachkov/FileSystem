@@ -32,17 +32,21 @@ std::string Directory::GetContent()
 
 bool Directory::Create(const std::string& directoryName)
 {
-    fs::create_directories("./" + directoryName);
+    bool deleted = mkdir(directoryName.c_str());
     this -> dirName = directoryName;
-    return true;
+    return deleted;
 }
 
 bool Directory::Delete(const std::string& directoryName)
 {
-    fs::remove_all(directoryName);
+    bool deleted = true;
+    if(this -> dirName == directoryName)
+    {
+        deleted = rmdir(directoryName.c_str());
+    }
     this -> dirName = "";
     std::cout << "LogWarning: Directory::Delete(const std::string& directoryName) -> Needs Testing" << std::endl;
-    return false;
+    return deleted;
 }
 
 
