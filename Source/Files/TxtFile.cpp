@@ -69,7 +69,7 @@ bool TxtFile::Delete(const std::string& filePath)
     if(this -> fileName == filePath)
     {
         this -> file.close();
-        return ~this -> file.is_open();
+        return !this -> file.is_open();
     }
     else
     {
