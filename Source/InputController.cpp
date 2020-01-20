@@ -33,6 +33,7 @@ bool InputController::SetFileSystem(FileSystemStructure* newFileSystem)
 
 std::string InputController::LogicOverInput(const std::string& userInput)
 {
+    // Interesting bug
     std::string allWithoutCommand = userInput;
     if (userInput.find("pwd") != std::string::npos)
     {
@@ -60,27 +61,34 @@ std::string InputController::LogicOverInput(const std::string& userInput)
         allWithoutCommand = allWithoutCommand.replace(userInput.find("cp"), 3, "");
         this -> currentExecutableCommand = new cpCopy(fileSystem);
     }
-    else if (userInput.find("rm") != std::string::npos)
+    else if (userInput.find("rm") != std::string::npos && userInput.find("rmdir") == std::string::npos)
     {
         allWithoutCommand = allWithoutCommand.replace(userInput.find("rm"), 3, "");
         this -> currentExecutableCommand = new rmRemoveFile(fileSystem);
-    }
-    else if (userInput.find("mkdir") != std::string::npos)
-    {
-        allWithoutCommand = allWithoutCommand.replace(userInput.find("mkdir"), 6, "");
-        this -> currentExecutableCommand = new mkdirCreateDir(fileSystem);
     }
     else if (userInput.find("rmdir") != std::string::npos)
     {
         allWithoutCommand = allWithoutCommand.replace(userInput.find("rmdir"), 6, "");
         this -> currentExecutableCommand = new rmdirDeleteEmptyDir(fileSystem);
     }
+    else if (userInput.find("mkdir") != std::string::npos)
+    {
+        allWithoutCommand = allWithoutCommand.replace(userInput.find("mkdir"), 6, "");
+        this -> currentExecutableCommand = new mkdirCreateDir(fileSystem);
+    }
     else
     {
-        return std::string("Exit/Invalid Command");
+        currentExecutableCommand = nullptr;
     }
-    currentExecutableCommand -> Execute(allWithoutCommand);
-    return currentExecutableCommand -> GetMessage();
+    if(currentExecutableCommand)
+    {
+        currentExecutableCommand -> Execute(allWithoutCommand);
+        return currentExecutableCommand -> GetMessage();
+    }
+    else
+    {
+        return "-";
+    }
 }
 
 

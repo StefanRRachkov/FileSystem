@@ -4,7 +4,6 @@
 
 #include "Commands/CommandTypes.h"
 
-//../Testing/
 
 class InputController
 {

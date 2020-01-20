@@ -16,7 +16,7 @@ bool FileSystemRepresentator::Start()
     do
     {
         input = "";
-        std::cin >> input;
+        std::getline(std::cin, input);
         std::cout << this -> inputController.LogicOverInput(input) << std::endl;
     }
     while(input != "exit");

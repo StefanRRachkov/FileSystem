@@ -11,9 +11,16 @@ lsListDirectory::lsListDirectory(FileSystemStructure* fileSystem)
 
 bool lsListDirectory::Execute(std::string input)
 {
-    for(auto child : this -> fileSystem -> GetWorkingNode() -> children)
+    if(this -> fileSystem -> GetWorkingNode() -> children.size() > 0)
     {
-        this -> message += child -> data -> GetFileName() + '\n';
+        for(auto child : this -> fileSystem -> GetWorkingNode() -> children)
+        {
+            this -> message += child -> data -> GetFileName() + '\n';
+        }
+        if (!this -> message.empty() && this -> message.at(this -> message.size() - 1) == '\n')
+        {
+            this -> message.erase(this -> message.size() - 1);
+        }
     }
     return true;
 }

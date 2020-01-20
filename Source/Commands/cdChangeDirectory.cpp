@@ -13,6 +13,7 @@ cdChangeDirectory::cdChangeDirectory(FileSystemStructure* fileSystem)
 
 bool cdChangeDirectory::Execute(std::string filePath)
 {
+    // Clearing the ../Testing/ and putting only /
     std::string steps = filePath;
     std::replace(steps.begin(), steps.end(), '/', ' ');
     std::vector<std::string> stepsOneByOne;
@@ -25,16 +26,15 @@ bool cdChangeDirectory::Execute(std::string filePath)
     FileSystemNode* tempNode = this -> fileSystem -> GetWorkingNode();
     for(auto s : stepsOneByOne)
     {
-        if (s == "..")
+        if (s == ".." && tempNode -> parent)
         {
             tempNode = tempNode -> parent;
         }
         else
         {
-            tempNode = tempNode -> parent;
             for(auto child : tempNode -> children)
             {
-                if (child -> data -> GetFileName() == s)
+                if (child -> data -> GetFileName() == s && child -> data -> GetFileName() == stepsOneByOne.at(stepsOneByOne.size() - 1))
                 {
                     this -> fileSystem -> SetWorkingNode(child);
                     this -> message = "Changed Directory to: " + filePath;
@@ -43,5 +43,12 @@ bool cdChangeDirectory::Execute(std::string filePath)
             }
         }
     }
+    if(stepsOneByOne.at(stepsOneByOne.size() - 1) == "..")
+    {
+        this -> fileSystem -> SetWorkingNode(tempNode);
+        this -> message = "Changed Directory to: " + filePath;
+        return true;
+    }
+    this -> message = "Cannot change the directory. Possible Solution: Check input";
     return false;
-}
+ }

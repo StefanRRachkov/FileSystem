@@ -55,14 +55,14 @@ bool FileSystemNode::AddChild(const std::string& filePath, const FileType& fType
         case DIR:
         {
             childData = new Directory;
-            childData->Create(filePath);
+            childData -> Create(filePath);
             break;
         }
     }
     auto child = new FileSystemNode(
             childData,
             fType,
-            this -> nodePath + filePath,
+            this -> nodePath + '/' + childData -> GetFileName(),
             this
     );
     this -> children.push_back(child);
@@ -71,11 +71,21 @@ bool FileSystemNode::AddChild(const std::string& filePath, const FileType& fType
 
 bool FileSystemNode::RemoveChild(const std::string& filePath)
 {
-    for(auto child : this -> children)
+    std::string steps = filePath;
+    std::replace(steps.begin(), steps.end(), '/', ' ');
+    std::vector<std::string> stepsOneByOne;
+    std::stringstream ss(steps);
+    std::string step;
+    while(ss >> step)
     {
-        if (child -> data -> GetFileName() == filePath)
+        stepsOneByOne.push_back(step);
+    }
+    for(unsigned int index = 0; index < this -> children.size(); index++)
+    {
+        if (this -> children.at(index) -> data -> GetFileName() == stepsOneByOne.back())
         {
-            delete(child);
+            if(this -> children.at(index) -> fileType == DIR) this -> data -> Delete(filePath);
+            this -> children.erase(this -> children.begin() + index);
             return true;
         }
     }

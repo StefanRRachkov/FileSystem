@@ -1,5 +1,5 @@
 //
-// Created by User on 20.1.2020 г..
+// Created by User on 20.1.2020
 //
 
 #include "../../Headers/Commands/mkdirCreateDir.h"
@@ -11,6 +11,8 @@ mkdirCreateDir::mkdirCreateDir(FileSystemStructure* fileSystem)
 
 bool mkdirCreateDir::Execute(std::string fileName)
 {
-    this -> message = "Created Directory";
-    return this -> fileSystem -> GetWorkingNode() -> AddChild(fileName, DIR);
+    bool proceed = this -> fileSystem -> GetWorkingNode() -> AddChild(this -> fileSystem -> GetWorkingNode() -> nodePath + '/' + fileName , DIR);
+    if(proceed) this -> message = "Created a Directory";
+    else this -> message = "Didn't create a Directory";
+    return proceed;
 }

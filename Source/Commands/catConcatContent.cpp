@@ -38,7 +38,7 @@ bool catConcatContent::Execute(std::string input)
             if (child -> data -> GetFileName() == stepsOneByOne.at(stepsOneByOne.size() - 1))
             {
                 child -> data -> SetContent(child -> data -> GetContent() + buffer);
-                this -> message = "Saved into " + stepsOneByOne.at(stepsOneByOne.size() - 1);
+                this -> message = "Saved into " + stepsOneByOne.at(stepsOneByOne.size() - 1) + '\n' + child -> data -> GetContent();
                 return true;
             }
         }
@@ -51,7 +51,7 @@ bool catConcatContent::Execute(std::string input)
             {
                 std::cin >> buffer;
                 child -> data -> SetContent(child -> data -> GetContent() + buffer);
-                this -> message = "Saved into " + stepsOneByOne.at(stepsOneByOne.size() - 1);
+                this -> message = "Saved into " + stepsOneByOne.at(stepsOneByOne.size() - 1) + child -> data -> GetContent();
                 return true;
             }
         }

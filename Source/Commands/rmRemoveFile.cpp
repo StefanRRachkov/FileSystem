@@ -11,6 +11,8 @@ rmRemoveFile::rmRemoveFile(FileSystemStructure* fileSystem)
 
 bool rmRemoveFile::Execute(std::string fileName)
 {
-    this -> message = "Removed Directory";
-    return this -> fileSystem -> GetWorkingNode() -> RemoveChild(fileName);
+    bool executed = this -> fileSystem -> GetWorkingNode() -> RemoveChild(fileName);
+    if(executed) this -> message = "Removed File";
+    else this -> message = "Cannot remove file";
+    return executed;
 }

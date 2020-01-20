@@ -7,6 +7,9 @@
 
 #include "File.h"
 #include <iostream>
+#include <algorithm>
+#include <vector>
+#include <sstream>
 #include <stdio.h>
 #include <io.h>
 

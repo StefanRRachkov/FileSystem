@@ -45,11 +45,17 @@ bool cpCopy::Execute(std::string filePath)
         }
         else
         {
-            tempNode = tempNode -> parent;
-            for(const auto& file : files)
+            for(auto child : tempNode -> children)
             {
-                tempNode -> AddChild(file, TXT);
+                if(child -> data -> GetFileName() == s)
+                {
+                    tempNode = child;
+                }
             }
+        }
+        for(const auto& file : files)
+        {
+            tempNode -> AddChild(tempNode -> nodePath + file, TXT);
         }
     }
     return true;

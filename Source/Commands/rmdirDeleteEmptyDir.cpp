@@ -18,7 +18,7 @@ bool rmdirDeleteEmptyDir::Execute(std::string fileName)
             if(child -> children.empty())
             {
                 this -> message = "Directory Removed";
-                return this -> fileSystem -> GetWorkingNode() -> RemoveChild(fileName);
+                return this -> fileSystem -> GetWorkingNode() -> RemoveChild(child -> nodePath);
             }
             else
             {

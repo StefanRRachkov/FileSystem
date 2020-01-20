@@ -32,20 +32,35 @@ std::string Directory::GetContent()
 
 bool Directory::Create(const std::string& directoryName)
 {
+    std::string pureDirName = directoryName;
+    std::replace(pureDirName.begin(), pureDirName.end(), '/', ' ');
+    std::vector<std::string> stepsOneByOne;
+    std::stringstream ss(pureDirName);
+    std::string step;
+    while(ss >> step)
+    {
+        stepsOneByOne.push_back(step);
+    }
+
+    this -> dirName = stepsOneByOne.at(stepsOneByOne . size() - 1);
     bool created = mkdir(directoryName.c_str());
-    this -> dirName = directoryName;
     return created;
 }
 
 bool Directory::Delete(const std::string& directoryName)
 {
     bool deleted = true;
-    if(this -> dirName == directoryName)
+    std::string steps = directoryName;
+    std::replace(steps.begin(), steps.end(), '/', ' ');
+    std::vector<std::string> stepsOneByOne;
+    std::stringstream ss(steps);
+    std::string step;
+    while(ss >> step)
     {
-        deleted = rmdir(directoryName.c_str());
+        stepsOneByOne.push_back(step);
     }
+    deleted = rmdir(directoryName.c_str());
     this -> dirName = "";
-    std::cout << "LogWarning: Directory::Delete(const std::string& directoryName) -> Needs Testing" << std::endl;
     return deleted;
 }
 

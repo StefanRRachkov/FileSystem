@@ -5,11 +5,12 @@
 TxtFile::TxtFile(const std::string& filePath)
 {
     this -> fileName = filePath;
+    this -> fileName.erase(this -> fileName.begin(), this -> fileName.begin() + 11);
     std::string buffer;
     if(!this -> file.is_open())
     {
-        this -> file.open(this -> fileName);
-        while(this -> file.eof())
+        this -> file.open(filePath);
+        while(!this -> file.eof() && this -> file.is_open())
         {
             std::getline(this -> file, buffer);
             this -> fileContent += buffer + '\n';
