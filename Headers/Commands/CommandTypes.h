@@ -7,5 +7,11 @@
 
 #include "pwdFullPath.h"
 #include "cdChangeDirectory.h"
+#include "lsListDirectory.h"
+#include "catConcatContent.h"
+#include "cpCopy.h"
+#include "rmRemoveFile.h"
+#include "mkdirCreateDir.h"
+#include "rmdirDeleteEmptyDir.h"
 
 #endif //FILESYSTEM_COMMANDTYPES_H

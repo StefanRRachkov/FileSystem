@@ -2,7 +2,7 @@
 // Created by User on 20.1.2020 г..
 //
 
-#include "catConcatContent.h"
+#include "../../Headers/Commands/catConcatContent.h"
 
 catConcatContent::catConcatContent(FileSystemStructure* fileSystem)
 {
@@ -38,6 +38,7 @@ bool catConcatContent::Execute(std::string input)
             if (child -> data -> GetFileName() == stepsOneByOne.at(stepsOneByOne.size() - 1))
             {
                 child -> data -> SetContent(child -> data -> GetContent() + buffer);
+                this -> message = "Saved into " + stepsOneByOne.at(stepsOneByOne.size() - 1);
                 return true;
             }
         }
@@ -50,6 +51,7 @@ bool catConcatContent::Execute(std::string input)
             {
                 std::cin >> buffer;
                 child -> data -> SetContent(child -> data -> GetContent() + buffer);
+                this -> message = "Saved into " + stepsOneByOne.at(stepsOneByOne.size() - 1);
                 return true;
             }
         }

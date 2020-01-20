@@ -11,5 +11,6 @@ mkdirCreateDir::mkdirCreateDir(FileSystemStructure* fileSystem)
 
 bool mkdirCreateDir::Execute(std::string fileName)
 {
+    this -> message = "Created Directory";
     return this -> fileSystem -> GetWorkingNode() -> AddChild(fileName, DIR);
 }

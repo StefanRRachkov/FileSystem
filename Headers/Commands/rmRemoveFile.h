@@ -8,7 +8,7 @@
 #include "Command.h"
 #include "../FileSystemStructure.h"
 
-class rmRemoveFile
+class rmRemoveFile : public Command
 {
 private:
     FileSystemStructure* fileSystem;

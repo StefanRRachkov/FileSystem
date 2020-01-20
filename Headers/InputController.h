@@ -3,7 +3,8 @@
 #define FILESYSTEM_INPUTCONTROLLER_H
 
 #include "Commands/CommandTypes.h"
-#include "FileSystemStructure.h"
+
+//../Testing/
 
 class InputController
 {

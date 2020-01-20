@@ -8,7 +8,7 @@
 #include "Command.h"
 #include "../FileSystemStructure.h"
 
-class catConcatContent
+class catConcatContent : public Command
 {
 private:
     FileSystemStructure* fileSystem;
