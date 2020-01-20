@@ -35,7 +35,6 @@ FileSystemNode& FileSystemNode::operator=(const FileSystemNode& node)
 FileSystemNode::~FileSystemNode()
 {
 //    if(data) delete(data);
-//    if(parent) delete(parent);
 //    for(auto child : children)
 //    {
 //        if(child) delete(child);
@@ -84,7 +83,10 @@ bool FileSystemNode::RemoveChild(const std::string& filePath)
     {
         if (this -> children.at(index) -> data -> GetFileName() == stepsOneByOne.back())
         {
-            if(this -> children.at(index) -> fileType == DIR) this -> data -> Delete(filePath);
+            if(this -> children.at(index) -> fileType == DIR)
+            {
+                this -> data -> Delete(filePath);
+            }
             this -> children.erase(this -> children.begin() + index);
             return true;
         }

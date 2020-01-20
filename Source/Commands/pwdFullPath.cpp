@@ -10,7 +10,14 @@ pwdFullPath::pwdFullPath(FileSystemStructure* currentFileSystem)
 bool pwdFullPath::Execute(std::string input)
 {
     std::string msg =  this -> fileSystem -> GetWorkingNode() -> nodePath;
-    msg.erase(msg.begin(), msg.begin() + 10);
+    if (msg.size() > 11)
+    {
+        msg.erase(msg.begin(), msg.begin() + 11);
+    }
+    else
+    {
+        msg.erase(msg.begin(), msg.begin() + 10);
+    }
     this -> message = msg;
     return true;
 }

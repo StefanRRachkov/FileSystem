@@ -11,7 +11,7 @@ cpCopy::cpCopy(FileSystemStructure* fileSystem)
 
 bool cpCopy::Execute(std::string filePath)
 {
-    std::string steps = filePath;
+    const std::string& steps = filePath;
     std::vector<std::string> stepsOneByOne;
     std::stringstream ss(steps);
     std::string step;
@@ -55,7 +55,7 @@ bool cpCopy::Execute(std::string filePath)
         }
         for(const auto& file : files)
         {
-            tempNode -> AddChild(tempNode -> nodePath + file, TXT);
+            tempNode -> AddChild(tempNode -> nodePath + '/' + file, TXT);
         }
     }
     return true;

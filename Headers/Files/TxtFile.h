@@ -5,6 +5,10 @@
 #include "../MetaData.h"
 #include "File.h"
 #include <fstream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <sstream>
 #include <iostream>
 
 class TxtFile : public File

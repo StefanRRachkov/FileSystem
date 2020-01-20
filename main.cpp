@@ -9,5 +9,7 @@ int main()
 
     FileSystemRepresentator fs(root);
     fs.Start();
+
+    delete(root);
     return 0;
 }

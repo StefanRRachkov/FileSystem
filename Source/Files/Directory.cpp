@@ -59,8 +59,11 @@ bool Directory::Delete(const std::string& directoryName)
     {
         stepsOneByOne.push_back(step);
     }
-    deleted = rmdir(directoryName.c_str());
-    this -> dirName = "";
+    if(this -> dirName == stepsOneByOne.back())
+    {
+        deleted = rmdir(directoryName.c_str());
+        this -> dirName = "";
+    }
     return deleted;
 }
 
