@@ -22,7 +22,7 @@ public:
 
     std::string GetFileName();
     std::string GetContent();
-    inline void SetContnet(std::string) {};
+    inline void SetContent(std::string) {};
     bool Create(const std::string&);
     bool Delete(const std::string&);
 

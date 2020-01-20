@@ -34,25 +34,38 @@ FileSystemNode& FileSystemNode::operator=(const FileSystemNode& node)
 
 FileSystemNode::~FileSystemNode()
 {
-    if(data) delete(data);
-    if(parent) delete(parent);
-    for(auto child : children)
-    {
-        if(child) delete(child);
-    }
+//    if(data) delete(data);
+//    if(parent) delete(parent);
+//    for(auto child : children)
+//    {
+//        if(child) delete(child);
+//    }
 }
 
 bool FileSystemNode::AddChild(const std::string& filePath, const FileType& fType)
 {
-    auto childData = new TxtFile;
-    childData -> Create(filePath);
+    File* childData;
+    switch (fType)
+    {
+        case TXT:
+        {
+            childData = new TxtFile(filePath);
+            break;
+        }
+        case DIR:
+        {
+            childData = new Directory;
+            childData->Create(filePath);
+            break;
+        }
+    }
     auto child = new FileSystemNode(
             childData,
             fType,
             this -> nodePath + filePath,
             this
     );
-    this -> children.emplace_back(child);
+    this -> children.push_back(child);
     return true;
 }
 

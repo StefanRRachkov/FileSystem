@@ -4,14 +4,26 @@
 
 #include "../Headers/FileSystemRepresentator.h"
 
-void FileSystemRepresentator::PrintTree(FileSystemNode* currentNode)
+FileSystemRepresentator::FileSystemRepresentator(FileSystemNode* root)
 {
-    /// Basic Traversal Algorithm
-    if (!currentNode)
-        return;
-    for(auto child : currentNode -> children)
+    this -> fileSystem = new FileSystemStructure(root);
+    this -> inputController.SetFileSystem(this -> fileSystem);
+}
+
+bool FileSystemRepresentator::Start()
+{
+    std::string input;
+    do
     {
-        PrintTree(child);
+        input = "";
+        std::cin >> input;
+        std::cout << this -> inputController.LogicOverInput(input) << std::endl;
     }
-    std::cout << currentNode -> nodePath << std::endl;
+    while(input != "exit");
+    return true;
+}
+
+FileSystemRepresentator::~FileSystemRepresentator()
+{
+    delete(this -> fileSystem);
 }

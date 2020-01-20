@@ -40,40 +40,44 @@ std::string InputController::LogicOverInput(const std::string& userInput)
         this -> currentExecutableCommand = new pwdFullPath(fileSystem);
 
     }
-    if (userInput.find("cd") != std::string::npos)
+    else if (userInput.find("cd") != std::string::npos)
     {
         allWithoutCommand = allWithoutCommand.replace(userInput.find("cd"), 3, "");
         this -> currentExecutableCommand = new cdChangeDirectory(fileSystem);
     }
-    if (userInput.find("ls") != std::string::npos)
+    else if (userInput.find("ls") != std::string::npos)
     {
         allWithoutCommand = allWithoutCommand.replace(userInput.find("ls"), 3, "");
         this -> currentExecutableCommand = new lsListDirectory(fileSystem);
     }
-    if (userInput.find("cat") != std::string::npos)
+    else if (userInput.find("cat") != std::string::npos)
     {
         allWithoutCommand = allWithoutCommand.replace(userInput.find("cat"), 4, "");
         this -> currentExecutableCommand = new catConcatContent(fileSystem);
     }
-    if (userInput.find("cp") != std::string::npos)
+    else if (userInput.find("cp") != std::string::npos)
     {
         allWithoutCommand = allWithoutCommand.replace(userInput.find("cp"), 3, "");
         this -> currentExecutableCommand = new cpCopy(fileSystem);
     }
-    if (userInput.find("rm") != std::string::npos)
+    else if (userInput.find("rm") != std::string::npos)
     {
         allWithoutCommand = allWithoutCommand.replace(userInput.find("rm"), 3, "");
         this -> currentExecutableCommand = new rmRemoveFile(fileSystem);
     }
-    if (userInput.find("mkdir") != std::string::npos)
+    else if (userInput.find("mkdir") != std::string::npos)
     {
         allWithoutCommand = allWithoutCommand.replace(userInput.find("mkdir"), 6, "");
         this -> currentExecutableCommand = new mkdirCreateDir(fileSystem);
     }
-    if (userInput.find("rmdir") != std::string::npos)
+    else if (userInput.find("rmdir") != std::string::npos)
     {
         allWithoutCommand = allWithoutCommand.replace(userInput.find("rmdir"), 6, "");
         this -> currentExecutableCommand = new rmdirDeleteEmptyDir(fileSystem);
+    }
+    else
+    {
+        return std::string("Exit/Invalid Command");
     }
     currentExecutableCommand -> Execute(allWithoutCommand);
     return currentExecutableCommand -> GetMessage();

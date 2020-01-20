@@ -4,12 +4,20 @@
 #define FILESYSTEM_FILESYSTEMREPRESENTATOR_H
 
 #include "FileSystemStructure.h"
+#include "InputController.h"
 
 class FileSystemRepresentator
 {
 private:
+    FileSystemStructure* fileSystem;
+    InputController inputController;
 public:
-    void PrintTree(FileSystemNode*);
+    inline FileSystemRepresentator() = default;
+    FileSystemRepresentator(FileSystemNode*);
+
+    bool Start();
+
+    ~FileSystemRepresentator();
 };
 
 

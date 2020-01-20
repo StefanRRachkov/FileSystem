@@ -32,9 +32,9 @@ std::string Directory::GetContent()
 
 bool Directory::Create(const std::string& directoryName)
 {
-    bool deleted = mkdir(directoryName.c_str());
+    bool created = mkdir(directoryName.c_str());
     this -> dirName = directoryName;
-    return deleted;
+    return created;
 }
 
 bool Directory::Delete(const std::string& directoryName)

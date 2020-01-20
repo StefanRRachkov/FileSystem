@@ -1,21 +1,13 @@
 #include "Headers/FileSystemRepresentator.h"
-#include "Headers/Files/TxtFile.h"
-#include "Headers/Commands/Command.h"
 
 int main()
 {
-    std::string steps = " > folder3";
-    std::replace(steps.begin(), steps.end(), '>', ' ');
-    std::vector<std::string> stepsOneByOne;
-    std::stringstream ss(steps);
-    std::string step;
-    while(ss >> step)
-    {
-        stepsOneByOne.push_back(step);
-    }
-    for(auto a : stepsOneByOne)
-    {
-        std::cout << a << std::endl;
-    }
+    auto rootDir = new Directory("../Testing/");
+    FileSystemNode* root = new FileSystemNode(rootDir, DIR, "../Testing/", nullptr);
+//    root->AddChild("folder1", DIR);
+//    root->AddChild("test.txt", TXT);
+
+    FileSystemRepresentator fs(root);
+    fs.Start();
     return 0;
 }
