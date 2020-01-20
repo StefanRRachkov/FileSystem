@@ -33,9 +33,9 @@ FileSystemStructure::~FileSystemStructure()
     if(this -> workingNode) delete(this -> workingNode);
 }
 
-bool FileSystemStructure::AddNode(const std::string& filePath)
+bool FileSystemStructure::AddNode(const std::string& filePath, const FileType& fType)
 {
-    //TODO: return this -> workingNode -> AddChild(filePath);
+    return this -> workingNode -> AddChild(filePath, fType);
 }
 
 bool FileSystemStructure::Remove(const std::string& filePath)

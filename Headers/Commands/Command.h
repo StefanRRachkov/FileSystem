@@ -3,6 +3,9 @@
 #define FILESYSTEM_COMMAND_H
 
 #include <string>
+#include <sstream>
+#include <algorithm>
+#include <vector>
 
 class Command {
     protected:

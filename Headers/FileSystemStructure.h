@@ -16,7 +16,7 @@ public:
     FileSystemStructure& operator=(const FileSystemStructure&);
 
     /// Methods:
-    bool AddNode(const std::string&);
+    bool AddNode(const std::string&, const FileType&);
     bool Remove(const std::string&);
 
     /// Get & Set

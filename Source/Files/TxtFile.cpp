@@ -64,6 +64,12 @@ std::string TxtFile::GetFileName()
     return this -> fileName;
 }
 
+void TxtFile::SetContent(std::string content)
+{
+    this -> fileContent = content;
+    this -> file << this -> fileContent;
+}
+
 bool TxtFile::Create(const std::string& filePath)
 {
     this -> fileName = filePath;
@@ -103,4 +109,5 @@ TxtFile::~TxtFile()
 {
     file.close();
 }
+
 

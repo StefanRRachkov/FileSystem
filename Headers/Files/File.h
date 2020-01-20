@@ -8,14 +8,13 @@
 #include <string>
 
 // Abstract Class
-//std::filesystem::create_directories("./a/b/c") -> Directory Creation
-//std::filesystem::remove(DIRNAME) -> Empty Directory
 
 class File
 {
 public:
     virtual std::string GetFileName() = 0;
     virtual std::string GetContent() = 0;
+    virtual void SetContent(std::string) = 0;
     virtual bool Create(const std::string&) = 0;
     virtual bool Delete(const std::string&) = 0;
 

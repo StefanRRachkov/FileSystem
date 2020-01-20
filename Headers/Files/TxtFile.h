@@ -21,6 +21,7 @@ public:
 
     std::string GetContent();
     std::string GetFileName();
+    void SetContent(std::string);
     bool Create(const std::string&);
     bool Delete(const std::string&);
 
